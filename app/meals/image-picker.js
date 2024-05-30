@@ -34,7 +34,8 @@ const ImagePicker = ({ label, name }) => {
                 pickedImage ? 
                     <Image src={pickedImage} alt="Preview" fill/> 
                 : 
-                    <p>No image picked</p>}    
+                    <p>No image picked</p>
+            }    
         </div>
         <input
             ref={imageInputRef}
