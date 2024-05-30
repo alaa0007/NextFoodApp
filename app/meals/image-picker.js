@@ -29,7 +29,7 @@ const ImagePicker = ({ label, name }) => {
     <div className={classes.picker}>
       <label htmlFor={name} >{label}</label>
       <div className={classes.controls}>
-        <div className={classes.preview} >
+        <div className={classes.preview} onClick={handleImageBtnClick} >
             {
                 pickedImage ? 
                     <Image src={pickedImage} alt="Preview" fill/> 
@@ -45,10 +45,8 @@ const ImagePicker = ({ label, name }) => {
             accept="image/png, image/jpeg, image/jpg"
             className={classes.input}
             onChange={handleImageChange}
+            required
         />
-        <button htmlFor={name} className={classes.button} type="button" onClick={handleImageBtnClick}>
-          Pick an image
-        </button>
       </div>
     </div>
   )
