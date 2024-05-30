@@ -4,6 +4,12 @@ import MealList from "../components/meals/meal-list";
 import { getMeals } from "@/lib/meals";
 import { Suspense } from "react";
 
+
+export const metadata = {
+    title: 'All Meals',
+    description: 'All your favorite recipes, created by a food-loving community.',
+};
+
 const  Meals = async () => {
     const meal = await getMeals();
     return <MealList meals={meal}/>

@@ -1,13 +1,15 @@
 'use server';
 
 import { addMeal } from "@/lib/meals";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 const isInvalid = (value) => {
-    return value === null || value === undefined || value.trim() === '';
+    return value === null || value === undefined || value === '';
 }
 
-export const shareMeal = async (fromData) => {
+export const shareMeal = async (prevState, fromData) => {
+    
     const meal = {
        title : fromData.get('title'),
        summary : fromData.get('summary'),
@@ -29,9 +31,13 @@ export const shareMeal = async (fromData) => {
         meal.image.size > 200000 ||
         meal.image.size ===0
     ) {
-        throw new Error('Invalid form data');
+        return {
+            message : 'Invalid input',
+            error : true
+        }
     }
 
     await addMeal(meal);
+    revalidatePath('/meals');
     redirect('/meals');
 }
